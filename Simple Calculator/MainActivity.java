@@ -28,42 +28,32 @@ public class MainActivity extends AppCompatActivity {
         btnMul = findViewById(R.id.btnMul);
         btnDiv = findViewById(R.id.btnDiv);
 
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s1 = etNum1.getText().toString();
-                String s2 = etNum2.getText().toString();
+        // Reusable click listener
+        View.OnClickListener listener = v -> {
+            String s1 = etNum1.getText().toString();
+            String s2 = etNum2.getText().toString();
 
-                if (s1.isEmpty() || s2.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Enter both numbers", Toast.LENGTH_SHORT).show();
+            if (s1.isEmpty() || s2.isEmpty()) {
+                Toast.makeText(this, "Enter both numbers", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            double n1 = Double.parseDouble(s1);
+            double n2 = Double.parseDouble(s2);
+            double result = 0;
+
+            if (v == btnAdd) result = n1 + n2;
+            else if (v == btnSub) result = n1 - n2;
+            else if (v == btnMul) result = n1 * n2;
+            else if (v == btnDiv) {
+                if (n2 == 0) {
+                    Toast.makeText(this, "Cannot divide by zero", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                double n1 = Double.parseDouble(s1);
-                double n2 = Double.parseDouble(s2);
-                double result = 0;
-
-                switch (v.getId()) {
-                    case R.id.btnAdd:
-                        result = n1 + n2;
-                        break;
-                    case R.id.btnSub:
-                        result = n1 - n2;
-                        break;
-                    case R.id.btnMul:
-                        result = n1 * n2;
-                        break;
-                    case R.id.btnDiv:
-                        if (n2 == 0) {
-                            Toast.makeText(MainActivity.this, "Cannot divide by zero", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        result = n1 / n2;
-                        break;
-                }
-
-                tvResult.setText("Result: " + result);
+                result = n1 / n2;
             }
+
+            tvResult.setText("Result: " + result);
         };
 
         btnAdd.setOnClickListener(listener);
