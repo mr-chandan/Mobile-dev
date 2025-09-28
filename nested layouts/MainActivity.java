@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,21 +18,62 @@ public class MainActivity extends AppCompatActivity {
 
         container = findViewById(R.id.container);
 
-        findViewById(R.id.btnHorizontal).setOnClickListener(v -> showLayout(true));
-        findViewById(R.id.btnVertical).setOnClickListener(v -> showLayout(false));
+        Button btnHorizontal = findViewById(R.id.btnHorizontal);
+        Button btnVertical = findViewById(R.id.btnVertical);
+
+        btnHorizontal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHorizontalLayout();
+            }
+        });
+
+        btnVertical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showVerticalLayout();
+            }
+        });
     }
 
-    private void showLayout(boolean horizontal) {
+    private void showHorizontalLayout() {
         container.removeAllViews();
 
         LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(horizontal ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
+        layout.setOrientation(LinearLayout.HORIZONTAL);
 
-        for (int i = 1; i <= 3; i++) {
-            Button btn = new Button(this);
-            btn.setText(horizontal ? "Button " + i : "Button " + (char)('A' + i - 1));
-            layout.addView(btn);
-        }
+        Button b1 = new Button(this);
+        b1.setText("Button 1");
+        layout.addView(b1);
+
+        Button b2 = new Button(this);
+        b2.setText("Button 2");
+        layout.addView(b2);
+
+        Button b3 = new Button(this);
+        b3.setText("Button 3");
+        layout.addView(b3);
+
+        container.addView(layout);
+    }
+
+    private void showVerticalLayout() {
+        container.removeAllViews();
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        Button b1 = new Button(this);
+        b1.setText("Button A");
+        layout.addView(b1);
+
+        Button b2 = new Button(this);
+        b2.setText("Button B");
+        layout.addView(b2);
+
+        Button b3 = new Button(this);
+        b3.setText("Button C");
+        layout.addView(b3);
 
         container.addView(layout);
     }
