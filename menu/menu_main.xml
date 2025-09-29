@@ -1,0 +1,20 @@
+<!-- (inside res/menu/) -->
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_home"
+        android:title="Home" />
+
+    <item android:id="@+id/menu_profile"
+        android:title="Profile" />
+
+    <!-- Sub Menu -->
+    <item android:title="Settings">
+        <menu>
+            <item android:id="@+id/menu_display" android:title="Display" />
+            <item android:id="@+id/menu_sound" android:title="Sound" />
+            <item android:id="@+id/menu_network" android:title="Network" />
+        </menu>
+    </item>
+
+</menu>
