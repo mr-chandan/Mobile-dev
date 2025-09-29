@@ -31,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btnImplicit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(android.net.Uri.parse("https://www.google.com"));
+                Intent intent = new Intent(Intent.ACTION_VIEW , android.net.Uri.parse("https://www.google.com"));
                 startActivity(intent);
             }
         });
