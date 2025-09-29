@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Find views
         textView = findViewById(R.id.textView);
         Button sizeButton = findViewById(R.id.sizeButton);
         Button colorButton = findViewById(R.id.colorButton);
@@ -56,15 +58,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 🔸 Font button toggle
+        // 🔸 Font button toggle (custom font)
         fontButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isCustomFont) {
-                    textView.setTypeface(Typeface.DEFAULT);
+                    textView.setTypeface(Typeface.DEFAULT); // default font
                     isCustomFont = false;
                 } else {
-                    textView.setTypeface(Typeface.SERIF);
+                    Typeface tf = getResources().getFont(R.font.second_font);
+                    textView.setTypeface(tf);
                     isCustomFont = true;
                 }
             }
@@ -75,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isBold) {
-                    textView.setTypeface(null, Typeface.ITALIC);
+                    textView.setTypeface(null, Typeface.ITALIC); // italic
                     isBold = false;
                 } else {
-                    textView.setTypeface(null, Typeface.BOLD);
+                    textView.setTypeface(null, Typeface.BOLD); // bold
                     isBold = true;
                 }
             }
