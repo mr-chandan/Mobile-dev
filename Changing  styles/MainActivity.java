@@ -3,14 +3,19 @@ package com.example.texteffect;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
-    boolean isBig=false, isRed=false, isCustomFont=false, isBold=false;
+    boolean isBig = false;
+    boolean isRed = false;
+    boolean isCustomFont = false;
+    boolean isBold = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,24 +28,60 @@ public class MainActivity extends AppCompatActivity {
         Button fontButton = findViewById(R.id.fontButton);
         Button styleButton = findViewById(R.id.styleButton);
 
-        sizeButton.setOnClickListener(v -> {
-            textView.setTextSize(isBig ? 24 : 40);
-            isBig = !isBig;
+        // 🔸 Size button toggle
+        sizeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isBig) {
+                    textView.setTextSize(24); // Normal size
+                    isBig = false;
+                } else {
+                    textView.setTextSize(40); // Big size
+                    isBig = true;
+                }
+            }
         });
 
-        colorButton.setOnClickListener(v -> {
-            textView.setTextColor(isRed ? Color.BLACK : Color.RED);
-            isRed = !isRed;
+        // 🔸 Color button toggle
+        colorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isRed) {
+                    textView.setTextColor(Color.BLACK);
+                    isRed = false;
+                } else {
+                    textView.setTextColor(Color.RED);
+                    isRed = true;
+                }
+            }
         });
 
-        fontButton.setOnClickListener(v -> {
-            textView.setTypeface(isCustomFont ? Typeface.DEFAULT : Typeface.SERIF);
-            isCustomFont = !isCustomFont;
+        // 🔸 Font button toggle
+        fontButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isCustomFont) {
+                    textView.setTypeface(Typeface.DEFAULT);
+                    isCustomFont = false;
+                } else {
+                    textView.setTypeface(Typeface.SERIF);
+                    isCustomFont = true;
+                }
+            }
         });
 
-        styleButton.setOnClickListener(v -> {
-            textView.setTypeface(null, isBold ? Typeface.ITALIC : Typeface.BOLD);
-            isBold = !isBold;
+        // 🔸 Style button toggle (Bold / Italic)
+        styleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isBold) {
+                    textView.setTypeface(null, Typeface.ITALIC);
+                    isBold = false;
+                } else {
+                    textView.setTypeface(null, Typeface.BOLD);
+                    isBold = true;
+                }
+            }
         });
     }
 }
