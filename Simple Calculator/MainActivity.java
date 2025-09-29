@@ -28,37 +28,69 @@ public class MainActivity extends AppCompatActivity {
         btnMul = findViewById(R.id.btnMul);
         btnDiv = findViewById(R.id.btnDiv);
 
-        // Reusable click listener
-        View.OnClickListener listener = v -> {
-            String s1 = etNum1.getText().toString();
-            String s2 = etNum2.getText().toString();
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s1 = etNum1.getText().toString();
+                String s2 = etNum2.getText().toString();
 
-            if (s1.isEmpty() || s2.isEmpty()) {
-                Toast.makeText(this, "Enter both numbers", Toast.LENGTH_SHORT).show();
-                return;
+
+                double n1 = Double.parseDouble(s1);
+                double n2 = Double.parseDouble(s2);
+                double result = n1 + n2;
+
+                tvResult.setText("Result: " + result);
             }
+        });
 
-            double n1 = Double.parseDouble(s1);
-            double n2 = Double.parseDouble(s2);
-            double result = 0;
+        btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s1 = etNum1.getText().toString();
+                String s2 = etNum2.getText().toString();
 
-            if (v == btnAdd) result = n1 + n2;
-            else if (v == btnSub) result = n1 - n2;
-            else if (v == btnMul) result = n1 * n2;
-            else if (v == btnDiv) {
+
+                double n1 = Double.parseDouble(s1);
+                double n2 = Double.parseDouble(s2);
+                double result = n1 - n2;
+
+                tvResult.setText("Result: " + result);
+            }
+        });
+
+        btnMul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s1 = etNum1.getText().toString();
+                String s2 = etNum2.getText().toString();
+
+
+                double n1 = Double.parseDouble(s1);
+                double n2 = Double.parseDouble(s2);
+                double result = n1 * n2;
+
+                tvResult.setText("Result: " + result);
+            }
+        });
+
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s1 = etNum1.getText().toString();
+                String s2 = etNum2.getText().toString();
+
+
+                double n1 = Double.parseDouble(s1);
+                double n2 = Double.parseDouble(s2);
+
                 if (n2 == 0) {
-                    Toast.makeText(this, "Cannot divide by zero", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Cannot divide by zero", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                result = n1 / n2;
+
+                double result = n1 / n2;
+                tvResult.setText("Result: " + result);
             }
-
-            tvResult.setText("Result: " + result);
-        };
-
-        btnAdd.setOnClickListener(listener);
-        btnSub.setOnClickListener(listener);
-        btnMul.setOnClickListener(listener);
-        btnDiv.setOnClickListener(listener);
+        });
     }
 }
